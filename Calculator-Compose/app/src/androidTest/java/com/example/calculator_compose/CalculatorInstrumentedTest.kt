@@ -1,7 +1,7 @@
 package com.example.calculator_compose
 
 import androidx.compose.ui.test.*
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.test.filters.SmallTest
 import com.example.calculator_compose.ui.theme.CalculatorComposeTheme
 import org.junit.Before
