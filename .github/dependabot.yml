@@ -13,6 +13,7 @@ updates:
       # Ignore updates to the following libraries since they're updated or tied with expo
       - dependency-name: "@babel/core"
       - dependency-name: "@types/react"
+      - dependency-name: "babel-preset-expo"
       - dependency-name: "expo"
       - dependency-name: "expo-status-bar"
       - dependency-name: "jest-expo"
@@ -20,7 +21,6 @@ updates:
       - dependency-name: "react-dom"
       - dependency-name: "react-native"
       - dependency-name: "react-native-web"
-      - dependency-name: "react-test-renderer"
 
   - package-ecosystem: "github-actions"
     directory: "/"

@@ -38,16 +38,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: './Calculator-ReactNative/package-lock.json'
-    - run: |
-        pwd
-        ls -la
-        cat package.json | grep typescript
-        grep '"typescript"' package-lock.json | head -20
-    - run: grep -R "5.9.3" . || true
-    - run: |
-        node -v
-        npm -v
-        npm pkg get devDependencies.typescript
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
