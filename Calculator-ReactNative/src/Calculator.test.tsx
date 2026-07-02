@@ -3,8 +3,8 @@ import React from "react";
 import Calculator from "./Calculator";
 
 describe("Calculator", () => {
-  beforeEach(() => {
-    render(<Calculator />);
+  beforeEach(async () => {
+    await render(<Calculator />);
   });
 
   afterEach(() => {
@@ -12,10 +12,10 @@ describe("Calculator", () => {
     press("clear");
   });
 
-  const press = (buttonText: string) => {
+  const press = async (buttonText: string) => {
     // Press the button
     const button = screen.getByText(buttonText);
-    fireEvent.press(button);
+    await fireEvent.press(button);
   };
 
   const expectOutput = (expectedOutput: string) => {
@@ -25,128 +25,128 @@ describe("Calculator", () => {
     );
   };
 
-  it("solves a simple equation", () => {
+  it("solves a simple equation", async () => {
     // 2 + 3 = 5
     expectOutput("0");
 
-    press("2");
+    await press("2");
     expectOutput("2");
 
-    press("+");
+    await press("+");
     expectOutput("2 + ");
 
-    press("3");
+    await press("3");
     expectOutput("2 + 3");
 
-    press("=");
+    await press("=");
     expectOutput("5");
   });
 
-  it("solves a complex equation", () => {
+  it("solves a complex equation", async () => {
     // -0.1 * 7 / 2 = -0.35
     expectOutput("0");
 
-    press("(-)");
+    await press("(-)");
     expectOutput("-0");
 
-    press("0");
+    await press("0");
     expectOutput("-0");
 
-    press(".");
+    await press(".");
     expectOutput("-0.");
 
-    press("1");
+    await press("1");
     expectOutput("-0.1");
 
-    press("*");
+    await press("*");
     expectOutput("-0.1 * ");
 
-    press("7");
+    await press("7");
     expectOutput("-0.1 * 7");
 
-    press("/");
+    await press("/");
     expectOutput("-0.7000000000000001 / ");
 
-    press("2");
+    await press("2");
     expectOutput("-0.7000000000000001 / 2");
 
-    press("=");
+    await press("=");
     expectOutput("-0.35000000000000003");
   });
 
-  it("solves a weird equation", () => {
+  it("solves a weird equation", async () => {
     // 0 ^ 0 = 1, 1 / -0 = -infinity, -infinity % 0 = NaN
     expectOutput("0");
 
-    press("^");
+    await press("^");
     expectOutput("0 ^ ");
 
-    press("0");
+    await press("0");
     expectOutput("0 ^ 0");
 
-    press("/");
+    await press("/");
     expectOutput("1 / ");
 
-    press("(-)");
+    await press("(-)");
     expectOutput("1 / -");
 
-    press("0");
+    await press("0");
     expectOutput("1 / -0");
 
-    press("%");
+    await press("%");
     expectOutput("-Infinity % ");
 
-    press("0");
+    await press("0");
     expectOutput("-Infinity % 0");
 
-    press("(-)");
+    await press("(-)");
     expectOutput("-Infinity % -0");
 
-    press("(-)");
+    await press("(-)");
     expectOutput("-Infinity % 0");
 
-    press("=");
+    await press("=");
     expectOutput("NaN");
   });
 
-  it("solves no equation", () => {
+  it("solves no equation", async () => {
     // -1 ^ 0.5
     expectOutput("0");
 
-    press("1");
+    await press("1");
     expectOutput("1");
 
-    press("(-)");
+    await press("(-)");
     expectOutput("-1");
 
-    press("^");
+    await press("^");
     expectOutput("-1 ^ ");
 
-    press("0");
+    await press("0");
     expectOutput("-1 ^ 0");
 
-    press(".");
+    await press(".");
     expectOutput("-1 ^ 0.");
 
-    press("5");
+    await press("5");
     expectOutput("-1 ^ 0.5");
 
-    press("↩︎");
+    await press("↩︎");
     expectOutput("-1 ^ 0.");
 
-    press("↩︎");
+    await press("↩︎");
     expectOutput("-1 ^ 0");
 
-    press("↩︎");
+    await press("↩︎");
     expectOutput("-1 ^ ");
 
-    press("↩︎");
+    await press("↩︎");
     expectOutput("-1");
 
-    press("↩︎");
+    await press("↩︎");
     expectOutput("-");
 
-    press("↩︎");
+    await press("↩︎");
     expectOutput("0");
   });
 });
