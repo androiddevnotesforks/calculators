@@ -12,6 +12,7 @@ updates:
     ignore:
       # Ignore updates to the following libraries since they're updated or tied with expo
       - dependency-name: "@babel/core"
+      - dependency-name: "@babel/preset-typescript"
       - dependency-name: "@types/react"
       - dependency-name: "babel-preset-expo"
       - dependency-name: "expo"
